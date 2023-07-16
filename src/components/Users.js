@@ -1,29 +1,25 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
+import { fetchUsers } from '../redux/users/usersSlice';
 
 const Users = () => {
-  const { usersData, isLoading, error } = useSelector((state) => state.users);
+  const { users, isLoading, error } = useSelector((state) => state.users);
+  const dispatch = useDispatch();
 
-  if (isLoading) {
-    return (
-      <div>...Loading</div>
-    );
-  }
+  useEffect(() => {
+    dispatch(fetchUsers());
+    console.log('I dispatched');
+  }, [dispatch]);
 
-  if (error !== null) {
-    return (
-      <div>
-        Error :
-        { error }
-      </div>
-    );
-  }
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Something went wrong!</p>;
 
   return (
     <div>
       <ul>
-        {usersData.map((user) => (
-          <li key={user.id.value}>
+        {users.map((user) => (
+          <li key={uuidv4()}>
             {user.name.first}
             {' '}
             {user.name.last}
