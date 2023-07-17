@@ -9,7 +9,6 @@ const Users = () => {
 
   useEffect(() => {
     dispatch(fetchUsers());
-    console.log('I dispatched');
   }, [dispatch]);
 
   if (isLoading) return <p>Loading...</p>;

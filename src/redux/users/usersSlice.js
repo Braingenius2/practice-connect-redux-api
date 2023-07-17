@@ -12,10 +12,9 @@ const fetchUsers = createAsyncThunk(
     try {
       const response = await fetch('https://randomuser.me/api/?results=5');
       const data = await response.json();
-      console.log('usersData: ', data.results);
       return data.results;
     } catch (error) {
-      return rejectWithValue("Something went wrong", error);
+      return rejectWithValue('Something went wrong', error);
     }
   },
 );
@@ -33,7 +32,6 @@ const usersSlice = createSlice({
       .addCase(fetchUsers.fulfilled, (state, action) => {
         state.isLoading = false;
         state.users = action.payload;
-        console.log('action.payload: ', action.payload);
       })
       .addCase(fetchUsers.rejected, (state, action) => {
         state.isLoading = false;
