@@ -15,7 +15,7 @@ const fetchUsers = createAsyncThunk(
       console.log('usersData: ', data.results);
       return data.results;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue("Something went wrong", error);
     }
   },
 );
