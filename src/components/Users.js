@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { v4 as uuidv4 } from 'uuid';
 import { fetchUsers } from '../redux/users/usersSlice';
 
 const Users = () => {
@@ -17,7 +16,7 @@ const Users = () => {
   return (
     <div>
       <ul>
-        {users.map((user) => (
+        {users.map((user) => (1
           <li key={uuidv4()}>
             {user.name.first}
             {' '}
